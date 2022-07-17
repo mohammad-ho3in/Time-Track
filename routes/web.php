@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/resume', function () {
     return view('welcome');
+});
+Route::get('/en',function(){
+    return view('cv.index');
+});
+Route::get('/fa',function(){
+    return view('cv.index_fa');
 });
