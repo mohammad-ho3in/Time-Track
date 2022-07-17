@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\LogWork\PartnerController;
+use App\Http\Controllers\LogWork\WorkStartController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,3 +24,11 @@ Route::get('/en',function(){
 Route::get('/fa',function(){
     return view('cv.index_fa');
 });
+Route::prefix('log-work')->group(function(){
+    Route::get('/',function(){
+        return view('log-work.index');
+    })->name('log-work.index');
+    Route::resource('partner',PartnerController::class)->names('log-work.partner');
+    Route::resource('work-start',WorkStartController::class)->names('log-work.work.start');
+});
+
