@@ -18,13 +18,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/resume', function () {
     return view('welcome');
 });
-Route::get('/en',function(){
+Route::get('/',function(){
     return view('cv.index');
 });
 Route::get('/fa',function(){
     return view('cv.index_fa');
 });
-Route::prefix('log-work')->group(function(){
+Route::prefix('log_work')->group(function(){
     Route::get('/',function(){
         return view('log-work.index');
     })->name('log-work.index');

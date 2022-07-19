@@ -30,10 +30,12 @@
     <div class="container-fluid mt-2">
         <div class="row d-flex justify-content-between text-center">
             <div class="col-md-6 col-12">
-                <a class="fw-bold text-decoration-none">ساعت: 8:22</a>
+                <a class="fw-bold text-decoration-none digital-clock"></a>
             </div>
             <div class="col-md-6 col-12">
-                <a class="fw-bold text-decoration-none">تاریخ: 25 تیرماه 1401</a>
+                <a class="fw-bold text-decoration-none">
+                    {{ \Morilog\Jalali\Jalalian::forge('today')->format('%Y/%m/%d') }}
+                </a>
             </div>
         </div>
     </div>
