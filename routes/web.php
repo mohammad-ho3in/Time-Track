@@ -1,8 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LogWork\PartnerController;
 use App\Http\Controllers\LogWork\WorkStartController;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,16 +19,20 @@ Route::get('/resume', function () {
     return view('welcome');
 });
 Route::get('/',function(){
-    return view('cv.index');
+    return view('welcome');
 });
 Route::get('/fa',function(){
     return view('cv.index_fa');
 });
+
+Route::get('/home',function(){
+    return view('log-work.index');
+})->name('home')->middleware('auth');
+
 Route::prefix('log_work')->group(function(){
-    Route::get('/',function(){
-        return view('log-work.index');
-    })->name('log-work.index');
     Route::resource('partner',PartnerController::class)->names('log-work.partner');
     Route::resource('work-start',WorkStartController::class)->names('log-work.work.start');
+    
 });
+
 
