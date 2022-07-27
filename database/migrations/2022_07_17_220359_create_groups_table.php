@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('target')->nullable();
             $table->text('description')->nullable();
-            $table->foreignId('creator_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('creator_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade')->nullable()->default(null);
             $table->timestamps();
             $table->softDeletes();
         });

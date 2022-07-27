@@ -19,8 +19,8 @@ return new class extends Migration
             $table->tinyInteger('status')->comment('0 => undone , 1 => done')->default(0);
             $table->text('description')->nullable();
             $table->string('full_time',20)->default('00:00');
-            $table->foreignId('group_id')->constrained('groups')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('group_creator_id')->constrained('groups','creator_id');
+            $table->foreignId('group_id')->constrained('groups')->onUpdate('cascade')->onDelete('cascade')->nullable()->default(null);
+            $table->foreignId('group_creator_id')->constrained('groups','creator_id')->nullable()->default(null);
             $table->timestamps();
             $table->softDeletes();
         });

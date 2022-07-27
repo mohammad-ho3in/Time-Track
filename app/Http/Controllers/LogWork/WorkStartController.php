@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\LogWork;
 
 use App\Http\Controllers\Controller;
+use App\Models\BigTask;
+use App\Models\Group;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Redis;
 
 class WorkStartController extends Controller
 {
@@ -35,7 +39,16 @@ class WorkStartController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $request->validate([
+            'task_name' => 'required|max:255|min:5|string',
+            'description' => 'required|max:255|min:5|string',
+        ]);
+
+        if($request->group_id == 0){
+            BigTask::create($request->except('group_id'));
+            return Redirect()->route('log-work.work.start.index');
+        }
     }
 
     /**

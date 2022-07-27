@@ -5,7 +5,12 @@
 
 <link rel="stylesheet" href="https://unpkg.com/persian-datepicker@1.2.0/dist/css/persian-datepicker.min.css">
 <link rel="stylesheet" href="{{ asset('log-work/components/tag/tagify.css') }}">
-
+@livewireStyles()
+<style>
+  .height17rem {
+    height: 17rem;
+  }
+</style>
 @endsection
 
 @section('content')
@@ -51,42 +56,37 @@
   <div class="row">
     <h4>ایجاد کار جدید</h4>
     <div class="dropdown-divider"></div>
-    <form action="" method="post" class="col-md-6 col-12">
+    <form action="{{ route('log-work.work.start.store',['userID'=>Auth::user()->id]) }}" method="post"
+      class="col-md-6 col-12">
+      @csrf
+      <div class="mb-3 col-12">
+        <label for="groupId" class="form-label">انتخاب گروه</label>
+        <select class="form-select form-select-sm" name="group_id" id="groupId" aria-label=".form-select-sm example">
+          <option selected value="0">فاقد گروه</option>
+        </select>
+      </div>
       <div class="mb-3 col-12">
         <label for="taskName" class="form-label">عنوان کار</label>
-        <input type="text" class="form-control form-control-sm" id="taskName" placeholder="عنوان کار">
+        <input type="text" class="form-control form-control-sm" id="taskName" placeholder="عنوان کار"
+          name="{{ old('task_name') }}">
+        @error('task_name')
+        <label class="bg-danger text-center d-block rounded text-white mt-1">{{ $message }}</label>
+        @enderror
       </div>
       <div class="mb-3 col-12">
         <label for="description" class="form-label">توضیحات</label>
-        <textarea name="description" class="form-control form-control-sm" id="description"></textarea>
+        <textarea name="description" class="form-control form-control-sm"
+          id="description">{{ old('description') }}</textarea>
+        @error('description')
+        <label class="bg-danger text-center d-block rounded text-white mt-1">{{ $message }}</label>
+        @enderror
       </div>
       <div class="mb-3 col-12">
         <button type="submit" class="btn btn-sm btn-info">ایجاد</button>
       </div>
     </form>
     <div class="col-md-6 col-12">
-      <div class="table-responsive">
-        <table class="table table-striped text-center">
-          <thead>
-            <tr>
-              <th>کارها</th>
-              <th>وضعیت</th>
-              <th>زمان کل</th>
-              <th>توضیحات</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>نام کار</td>
-              <th>
-                <input type="checkbox" name="status" value="0">
-              </th>
-              <th>06:10</th>
-              <th>ندارد</th>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      @livewire('show-big-tasks')
     </div>
     </form>
   </div>
@@ -176,4 +176,5 @@
     });
   });
 </script>
+@livewireScripts()
 @endsection

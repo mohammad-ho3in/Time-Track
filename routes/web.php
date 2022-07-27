@@ -29,10 +29,9 @@ Route::get('/home',function(){
     return view('log-work.index');
 })->name('home')->middleware('auth');
 
-Route::prefix('log_work')->group(function(){
+Route::prefix('log_work')->middleware('auth')->group(function(){
     Route::resource('partner',PartnerController::class)->names('log-work.partner');
     Route::resource('work-start',WorkStartController::class)->names('log-work.work.start');
-    
 });
 
 
