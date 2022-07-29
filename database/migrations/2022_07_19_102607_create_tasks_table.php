@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('title');
             $table->string('tags')->nullable();
             $table->text('description')->nullable();
-            $table->foreignId('big_task_id')->constrained('big_tasks')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('big_task_group_id')->constrained('big_tasks','group_id');
+            $table->foreignId('big_task_id')->constrained('big_tasks')->onUpdate('cascade')->onDelete('cascade')->default(0)->nullable();
+            $table->foreignId('big_task_group_id')->constrained('big_tasks','group_id')->default(0)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

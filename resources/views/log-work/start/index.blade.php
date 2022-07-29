@@ -96,25 +96,29 @@
     <div class="col-md-6 col-12">
       <h4>ثبت لاگ</h4>
       <div class="dropdown-divider"></div>
-      <form action="" method="POST">
-        <div class="mb-3 col-12">
-          <label for="taskName" class="form-label">عنوان کار</label>
-          <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-            <option value="0" selected>ندارد</option>
-            <option value="1">نام کار</option>
-          </select>
-        </div>
+      <form action="{{ route('log-work.work.start.storeNewTask') }}" method="POST">
+        @csrf
+        @livewire('select-task')
         <div class="mb-3 col-12">
           <label for="taskName" class="form-label">نام تسک</label>
-          <input type="text" class="form-control form-control-sm" id="taskName" placeholder="نام تسک">
+          <input type="text" class="form-control form-control-sm" id="taskName" placeholder="نام تسک" name="title" value="{{ old('title') }}">
+          @error('title')
+        <label class="bg-danger text-center d-block rounded text-white mt-1">{{ $message }}</label>
+        @enderror
         </div>
         <div class="mb-3 col-12">
           <label for="tags" class="form-label">تگ ها</label>
-          <input type="text" class="form-control form-control-sm" id="tagsStart" placeholder="نگ ها">
+          <input type="text" class="form-control form-control-sm" id="tagsStart" placeholder="نگ ها" name="tags" value='{{ old("tags") }}'>
+          @error('tags')
+        <label class="bg-danger text-center d-block rounded text-white mt-1">{{ $message }}</label>
+        @enderror
         </div>
         <div class="mb-3 col-12">
           <label for="description" class="form-label">توضیحات</label>
-          <textarea name="description" class="form-control form-control-sm" id="description"></textarea>
+          <textarea name="description" class="form-control form-control-sm" id="description">{{ old('description') }}</textarea>
+          @error('description')
+        <label class="bg-danger text-center d-block rounded text-white mt-1">{{ $message }}</label>
+        @enderror
         </div>
         <div class="mb-3 col-12">
           <button type="submit" class="btn btn-sm btn-info">ثبت</button>
@@ -122,37 +126,18 @@
       </form>
     </div>
     <div class="col-md-6 col-12">
+      @if (session()->has('starting'))
+        <x-toast.failure message="{{ session('starting') }}" />
+      @elseif (session()->has('started'))
+        <x-toast.success message="{{ session('started') }}" />
+      @endif
+      @if (session()->has('updating'))
+      <x-toast.failure message="{{ session('updating') }}" />
+      @elseif (session()->has('updated'))
+        <x-toast.success message="{{ session('updated') }}" />
+      @endif
       <h6>لیست لاگ های امروز</h6>
-      <div class="table-responsive">
-        <table class="table table-striped text-center">
-          <thead>
-            <tr>
-              <th>عنوان کار</th>
-              <th>نام</th>
-              <th>آیکون شروع</th>
-              <th>آیکون پایان</th>
-              <th>کل تایم</th>
-              <th>توضیحات</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>سایت علی</td>
-              <td>طراحی ارتباط با ما</td>
-              <td>
-                <a href="" class="btn btn-sm bg-danger text-white rounded-bottom fa fa-play"></a>
-              </td>
-              <td>
-                <a href="" class="btn btn-sm bg-danger text-white rounded-bottom fa fa-stop"></a>
-              </td>
-              <td>
-                <span>20:00</span>
-              </td>
-              <td>ندارد</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      @livewire('show-log')
     </div>
   </div>
 </section>

@@ -190,6 +190,7 @@ return [
         'link' => 'لینک',
         'national_code' => 'کدملی',
         'job' => 'شغل',
-        'task_name' => 'نام تسک'
+        'task_name' => 'نام تسک',
+        'tags' => 'تگ ها'
     ],
 ];

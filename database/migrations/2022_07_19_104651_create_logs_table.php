@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('logs', function (Blueprint $table) {
             $table->id();
-            $table->string('start_time');
-            $table->string('end_time')->nullable();
-            $table->string('count_time')->nullable();
+            $table->string('start_time')->nullable()->default(null);
+            $table->string('end_time')->nullable()->default(null);
+            $table->string('count_time')->nullable()->default(null);
             $table->text('description')->nullable();
             $table->foreignId('task_id')->constrained('tasks')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('task_big_task_id')->constrained('tasks','big_task_id');

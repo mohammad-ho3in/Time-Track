@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LogWork\PartnerController;
+use App\Http\Controllers\LogWork\Scheduling;
+use App\Http\Controllers\LogWork\StoreNewTask;
 use App\Http\Controllers\LogWork\WorkStartController;
 
 /*
@@ -30,8 +32,11 @@ Route::get('/home',function(){
 })->name('home')->middleware('auth');
 
 Route::prefix('log_work')->middleware('auth')->group(function(){
-    Route::resource('partner',PartnerController::class)->names('log-work.partner');
-    Route::resource('work-start',WorkStartController::class)->names('log-work.work.start');
+    Route::resource('partner',PartnerController::class)->names('log-work.partner')->only('index');
+    Route::resource('work-start',WorkStartController::class)->names('log-work.work.start')->only(['index','store']);
+    Route::post('work-start/newTask',StoreNewTask::class)->name('log-work.work.start.storeNewTask');
+    Route::get('task-start/{taskID}',[Scheduling::class,'start'])->name('log-work.task-start.start');
+    Route::get('task-stop/{taskID}',[Scheduling::class,'stop'])->name('log-work.task-start.stop');
 });
 
 
