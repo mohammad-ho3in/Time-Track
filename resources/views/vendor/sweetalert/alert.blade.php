@@ -9,9 +9,6 @@
         <script src="{{ $cdn ?? asset('vendor/sweetalert/sweetalert.all.js')  }}"></script>
     @endif
     <script>
-        Swal.fire({!! Session::pull('alert.config') !!}).then((result=>{
-            if (result.isConfirmed)
-                window.location.href = "{{ route('home')}}";
-        }));
+        Swal.fire({!! Session::pull('alert.config') !!});
     </script>
 @endif

@@ -149,6 +149,8 @@
 <script src="{{ asset('log-work/components/tag/jQuery.tagify.min.js') }}"></script>
 <script src="https://unpkg.com/persian-date@1.1.0/dist/persian-date.min.js"></script>
 <script src="https://unpkg.com/persian-datepicker@1.2.0/dist/js/persian-datepicker.min.js"></script>
+<script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
+@include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
 <script>
   $('#tags').tagify();
   $('#tagsStart').tagify();
