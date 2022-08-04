@@ -116,7 +116,7 @@
         <div class="mb-3 col-12">
           <label for="description" class="form-label">توضیحات</label>
           <textarea name="description" class="form-control form-control-sm" id="description">{{ old('description') }}</textarea>
-          @error('description')
+          @error('log.description')
         <label class="bg-danger text-center d-block rounded text-white mt-1">{{ $message }}</label>
         @enderror
         </div>

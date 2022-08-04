@@ -16,5 +16,6 @@ class Log extends Model
      */
     protected $fillable = [
         'task_id',
+        'task_big_task_id'
     ];
 }

@@ -191,6 +191,7 @@ return [
         'national_code' => 'کدملی',
         'job' => 'شغل',
         'task_name' => 'نام تسک',
-        'tags' => 'تگ ها'
+        'tags' => 'تگ ها',
+        'log.description' => 'توضیحات لاگ',
     ],
 ];

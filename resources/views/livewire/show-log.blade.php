@@ -15,15 +15,15 @@
                 <td>{{ $log->title }}</td>
                 <td>
                     <a href="task-start/{{ $log->id }}" class="btn btn-sm 
-                        @if($taskStatus=='end' || $taskStatus=='stop') bg-danger 
-                        @elseif ($taskStatus=='start') bg-success 
-                        @endif text-white rounded-bottom fa fa-play"></a>
+                        @if($log->start_time==null) bg-success
+                        @elseif($log->start_time!=null) bg-danger
+                        @endif"><i class="fa fa-play"></i></a>
                 </td>
                 <td>
                     <a href="task-stop/{{ $log->id }}" class="btn btn-sm 
-                        @if($taskStatus=='end' || $taskStatus=='stop') bg-success 
-                        @else bg-danger
-                        @endif text-white rounded-bottom fa fa-stop"></a>
+                        @if($log->end_time==null) bg-success
+                        @elseif ($log->end_time!=null) bg-danger
+                        @endif "><i class="fa fa-stop"></i></a>
                 </td>
                 <td>
                     <span>{{ $log->count_time }}</span>

@@ -21,10 +21,10 @@ class StoreNewTask extends Controller
         $request->validate([
             'title' => 'required|max:255|min:5|string',
             'tags' => 'required|min:5|string',
-            'description' => 'required|max:255|min:5|string',
+            'log.description' => 'required|max:255|min:5|string',
         ]);
         $newTask=Task::create($request->all());
-        $addLog=Log::create(['task_id'=>$newTask->id, 'task_big_task_id'=>$request->big_task_id]);
+        $addLog=Log::create(['task_id'=>$newTask->id, 'task_big_task_id'=>$newTask->big_task_id]);
         if($newTask and $addLog)
             return Redirect()->route('log-work.work.start.index');
     }

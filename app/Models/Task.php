@@ -19,5 +19,6 @@ class Task extends Model
         'title',
         'tags',
         'description',
+        'big_task_id',
     ];
 }
